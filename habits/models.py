@@ -6,7 +6,10 @@ from users.models import User
 
 
 class Habit(models.Model):
-    """Модель привычки"""
+    """
+    Модель привычки.
+    Может быть связанна с собой с отношением один ко многим (O2M).
+    """
 
     PERIODICITY_CHOICES = [
         (None, 'без периода'),
