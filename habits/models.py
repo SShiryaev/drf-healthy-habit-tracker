@@ -9,7 +9,13 @@ class Habit(models.Model):
     """Модель привычки"""
 
     PERIODICITY_CHOICES = [
+        (None, 'без периода'),
         ('DAILY', 'ежедневно'),
+        ('ONCE_TWO_DAYS', 'раз в два дня'),
+        ('ONCE_THREE_DAYS', 'раз в три дня'),
+        ('ONCE_FOUR_DAYS', 'раз в четыре дня'),
+        ('ONCE_FIVE_DAYS', 'раз в пять дней'),
+        ('ONCE_SIX_DAYS', 'раз в шесть дней'),
         ('WEEKLY', 'еженедельно'),
     ]
 
@@ -44,6 +50,8 @@ class Habit(models.Model):
         max_length=20,
         choices=PERIODICITY_CHOICES,
         default='DAILY',
+        blank=True,
+        null=True,
         verbose_name='периодичность'
     )
     reward = models.CharField(
