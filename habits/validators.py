@@ -67,16 +67,3 @@ class EnjoyableHabitValidator:
                 raise ValidationError(f'{error_message} {self.field_1}')
             elif related_habit:
                 raise ValidationError(f'{error_message} {self.field_2}')
-
-
-class PeriodicityValidator:
-    """Валидация на выполнение привычки не реже, чем 1 раз в 7 дней."""
-
-    def __init__(self, field):
-        self.field = field
-
-    def __call__(self, value):
-        periodicity = dict(value).get(self.field)
-
-        if periodicity not in Habit.PERIODICITY_CHOICES:
-            raise ValidationError(f'{self.field} must be in {Habit.PERIODICITY_CHOICES}')
