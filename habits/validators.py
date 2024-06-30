@@ -4,7 +4,10 @@ from rest_framework.serializers import ValidationError
 
 
 class DetachmentFieldsValidator:
-    """Валидация одновременного выбора связанной привычки и указания вознаграждения."""
+    """
+    Валидация одновременного выбора связанной привычки
+    и указания вознаграждения.
+    """
 
     def __init__(self, field_1, field_2):
         self.field_1 = field_1
@@ -15,7 +18,9 @@ class DetachmentFieldsValidator:
         reward = dict(value).get(self.field_2)
 
         if related_habit and reward:
-            raise ValidationError(f'Fields {self.field_1} and {self.field_2} cannot be both True')
+            raise ValidationError(
+                f'Fields {self.field_1} and {self.field_2} cannot be both True'
+            )
 
 
 class DurationValidator:
@@ -29,7 +34,9 @@ class DurationValidator:
         max_time = timedelta(minutes=2)
 
         if duration > max_time:
-            raise ValidationError(f'{self.field} should not be more than two minutes')
+            raise ValidationError(
+                f'{self.field} should not be more than two minutes'
+            )
 
 
 class RelatedEnjoyableHabitValidator:
