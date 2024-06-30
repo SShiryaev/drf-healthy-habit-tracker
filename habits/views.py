@@ -7,14 +7,6 @@ from habits.serializers import HabitSerializer
 from users.permissions import IsOwner
 
 
-class HabitCreateAPIView(generics.CreateAPIView):
-    permission_classes = (IsAuthenticated,)
-    serializer_class = HabitSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
 class HabitListAPIView(generics.ListAPIView):
     permission_classes = (IsAuthenticated, IsOwner,)
     serializer_class = HabitSerializer
@@ -29,10 +21,12 @@ class HabitPublicListAPIView(generics.ListAPIView):
     pagination_class = HabitPaginator
 
 
-class HabitRetrieveAPIView(generics.RetrieveAPIView):
-    permission_classes = (IsAuthenticated, IsOwner,)
+class HabitCreateAPIView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
