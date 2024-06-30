@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 from users.models import User
 
@@ -13,13 +14,13 @@ class Habit(models.Model):
 
     PERIODICITY_CHOICES = [
         (None, 'без периода'),
-        ('DAILY', 'ежедневно'),
-        ('ONCE_TWO_DAYS', 'раз в два дня'),
-        ('ONCE_THREE_DAYS', 'раз в три дня'),
-        ('ONCE_FOUR_DAYS', 'раз в четыре дня'),
-        ('ONCE_FIVE_DAYS', 'раз в пять дней'),
-        ('ONCE_SIX_DAYS', 'раз в шесть дней'),
-        ('WEEKLY', 'еженедельно'),
+        (0, 'понедельник'),
+        (1, 'вторник'),
+        (2, 'среда'),
+        (3, 'четверг'),
+        (4, 'пятница'),
+        (5, 'суббота'),
+        (6, 'воскресенье'),
     ]
 
     user = models.ForeignKey(
@@ -49,10 +50,14 @@ class Habit(models.Model):
         null=True,
         verbose_name='связанная привычка'
     )
-    periodicity = models.CharField(
-        max_length=20,
-        choices=PERIODICITY_CHOICES,
-        default='DAILY',
+    periodicity = ArrayField(
+        models.IntegerField(
+            choices=PERIODICITY_CHOICES,
+            blank=True,
+            null=True,
+            verbose_name='периодичность'
+        ),
+        size=8,
         blank=True,
         null=True,
         verbose_name='периодичность'

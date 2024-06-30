@@ -12,6 +12,7 @@ class User(AbstractUser):
 
     email = models.EmailField(unique=True, verbose_name='email')
     avatar = models.ImageField(upload_to='users/', blank=True, null=True, verbose_name='аватар')
+    tg_chat_id = models.CharField(max_length=50, blank=True, null=True, verbose_name='телеграм чат id')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
