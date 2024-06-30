@@ -44,7 +44,7 @@ python manage.py runserver
 ```text
 redis-server
 ```
-- запустить фоновую задачу на отправку уведомлений пользователям в telegram чат:
+- запустить фоновую задачу на отправку уведомлений пользователям в telegram чат: https://t.me/sh_habit_bot
 ```text
 celery -A config worker -l INFO  # Для Unix систем
 celery -A config worker -l INFO -P eventlet  # Для Windows
