@@ -1,7 +1,7 @@
 # drf-healthy-habit-tracker
 
 ## О проекте:
-Бэкенд-часть SPA веб-приложение, трекера полезных привычек. Вы можете создавать привычки,
+Бэкенд-часть SPA веб-приложения, трекера полезных привычек. Вы можете создавать привычки,
 выбирать периодичность, время их выполнения и прочее.
 Также, можно получать оповещения о привычке в telegram.
 
@@ -50,32 +50,3 @@ celery -A config worker -l INFO  # Для Unix систем
 celery -A config worker -l INFO -P eventlet  # Для Windows
 celery -A config beat -l info
 ```
-
-## Для запуска проекта локально воспользуйтесь командой:
-  ```text
-  python manage.py runserver
-  ```
-   перейдите на URL: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-- Для запуска Celery воспользуйтесь командами:
-
-worker:
-    ```
-    celery -A config worker -l INFO
-    ```
-
-beat:
-    ```
-    celery -A config beat -l INFO -S django
-    ```
-
-### Для запуска проекта через Docker:
-
-- установите Docker себе в систему, перейдя по [ссылке](https://docs.docker.com/engine/install/)
-- для сборки проекта и запуска введите команду:
-
-```text
-docker-compose up -d --build
-```
-
-- перейдите на URL: [http://127.0.0.1:8000](http://127.0.0.1:8000)
